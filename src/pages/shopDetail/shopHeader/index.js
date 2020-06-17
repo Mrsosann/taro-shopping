@@ -84,24 +84,24 @@ export default function ShopHeader(props) {
       <View className="shopHeader-op">
         {shopOperations.map(item => {
           const { name, type, image, num } = item
-          if (type === 'share') {
-            return (
-              <OpenTypeButton openType="share" onClick={() => onEvent(type)}>
-                <View className="shopHeader-op-item">
-                  <Image className="shopHeader-op-icon" src={image} />
-                  <Text>
-                    {num}·{name}
-                  </Text>
-                  <Text></Text>
-                </View>
-              </OpenTypeButton>
-            )
-          }
+          // if (type === 'share') {
+          //   return (
+          //     <OpenTypeButton openType="share" onClick={() => onEvent(type)}>
+          //       <View className="shopHeader-op-item">
+          //         <Image className="shopHeader-op-icon" src={image} />
+          //         <Text>
+          //           {num}·{name}
+          //         </Text>
+          //         <Text></Text>
+          //       </View>
+          //     </OpenTypeButton>
+          //   )
+          // }
           return (
             <View className="shopHeader-op-item" onClick={() => onEvent(type)}>
               <Image className="shopHeader-op-icon" src={image} />
               <Text>
-                {num}·{name}
+                {num}·{name}1
               </Text>
             </View>
           )

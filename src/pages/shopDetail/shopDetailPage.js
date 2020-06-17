@@ -9,6 +9,7 @@ import emptyImg from '../../assets/shop/empty.png'
 import taroFetch from '../../utils/request'
 
 import ShopHeader from './ShopHeader'
+import ShopShare from './ShopShare'
 import ShopGood from '../../components/ShopGood'
 import AddGood from '../../components/AddGood'
 import ShopDetailMsg from './ShopDetailMsg'
@@ -34,6 +35,7 @@ class shopDetailPage extends Component {
       },
       showManage: false,
       showDetail: false,
+      isSharing: false
     }
   }
 
@@ -168,15 +170,19 @@ class shopDetailPage extends Component {
   }
 
   handleShare = () => {
-    taroFetch({
-      url: '/app/share/addShare',
-      method: 'POST',
-      data: {
-        id: this.state.id,
-      },
-    }).then(() => {
-      this.fetchData(this.state.id)
+    console.log('click handleShare')
+    this.setState({
+      isSharing: true,
     })
+    // taroFetch({
+    //   url: '/app/share/addShare',
+    //   method: 'POST',
+    //   data: {
+    //     id: this.state.id,
+    //   },
+    // }).then(() => {
+    //   this.fetchData(this.state.id)
+    // })
   }
 
   handleComment = () => {
@@ -259,6 +265,7 @@ class shopDetailPage extends Component {
       showManage,
       total,
       showDetail,
+      isSharing
     } = this.state
     const { editPermission } = wishList
 
@@ -267,32 +274,40 @@ class shopDetailPage extends Component {
     }
 
     return (
-      <View className="shopDetail">
+      <View className='shopDetail'>
         {/* <ShopDetailMsg data={wishList} /> */}
+        {/* 展示分享下部弹框 */}
+        {isSharing && (
+          <ShopShare
+            data={wishList}
+            // onClick={this.openDetail}
+            // onEvent={this.handleShopAction}
+          />
+        )}        
         <ShopHeader
           data={wishList}
           onClick={this.openDetail}
           onEvent={this.handleShopAction}
         />
-        <View className="shopContent">
-          <View className="shopContent-head">
+        <View className='shopContent'>
+          <View className='shopContent-head'>
             <Text>全部商品</Text>
             {editPermission && (
-              <View className="shopContent-head-op">
+            <View className='shopContent-head-op'>
                 <Image
-                  className="shopContent-head-op-icon icon-add"
+                  className='shopContent-head-op-icon icon-add'
                   src={addIcon}
                   onClick={this.add}
                 />
                 <Image
-                  className="shopContent-head-op-icon"
+                  className='shopContent-head-op-icon'
                   src={moreIcon}
                   onClick={this.openModal}
                 />
               </View>
             )}
           </View>
-          <View className="shopContent-body">
+          <View className='shopContent-body'>
             {listGood.wishGoods.length &&
               listGood.wishGoods.map(good => (
                 <ShopGood
@@ -302,9 +317,9 @@ class shopDetailPage extends Component {
               ))}
             {!listGood.wishGoods.length &&
               (editPermission ? (
-                <AddGood title="添加商品/内容" onClick={this.add} />
+                <AddGood title='添加商品/内容' onClick={this.add} />
               ) : (
-                <View className="empty">暂无商品/内容</View>
+                <View className='empty'>暂无商品/内容</View>
               ))}
             {total && total > 10 && (
               <Button onClick={this.gotoGoodList}>查看更多商品</Button>
@@ -313,19 +328,19 @@ class shopDetailPage extends Component {
         </View>
         <AtActionSheet isOpened={showManage} onClose={this.close}>
           <AtActionSheetItem
-            className="shopDetail-operation-item"
+            className='shopDetail-operation-item'
             onClick={this.edit}
           >
             编辑清单
           </AtActionSheetItem>
           <AtActionSheetItem
-            className="shopDetail-operation-item"
+            className='shopDetail-operation-item'
             onClick={this.delete}
           >
             删除清单
           </AtActionSheetItem>
           <AtActionSheetItem
-            className="shopDetail-operation-item"
+            className='shopDetail-operation-item'
             onClick={this.editGood}
           >
             编辑商品

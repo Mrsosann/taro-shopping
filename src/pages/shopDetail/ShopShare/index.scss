@@ -1,0 +1,26 @@
+.shopShare {
+  &-layout {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 16rpx;
+
+    &-item {
+      text-align: center;
+    }
+    .layout-img {
+      display: block;
+      line-height: 1;
+      width: 136rpx;
+      height: 124rpx;
+    }
+    .layout-label {
+      display: block;
+      margin-top: 19rpx;
+      font-size:24rpx;
+      font-weight:600;
+      color:rgba(145,145,145,1);
+      line-height:33rpx;
+      text-align: center;
+    }
+  }
+}

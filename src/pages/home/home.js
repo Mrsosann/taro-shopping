@@ -7,6 +7,7 @@ import Banner from './banner'
 import Feature from './feature'
 import Recommend from './recommend'
 import SearchTop from '../search/searchTop'
+import ShopShare from '../shopDetail/ShopShare'
 
 import './home.scss'
 import '../search/search.scss'
@@ -75,6 +76,7 @@ class Home extends Component {
         <Banner data={banner} />
         <Feature data={selectionList} />
         <Recommend data={homeList} onClick={this.handelRecommend} />
+        <ShopShare/>
       </View>
     )
   }

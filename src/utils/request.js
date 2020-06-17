@@ -74,20 +74,23 @@ async function fetch(options) {
           header,
         })
       }
-
+      console.log('error url', url)
+      console.log('error response', response)
       if (code !== '0000') {
+        // console.log('2error response', response)
         return Promise.reject(response.data)
       }
 
       return data
     })
     .catch(error => {
+      // console.log('3error response', error)
       Taro.showToast({
-        title: (error && error.msg) || '接口报错，请稍后在试',
+        title: (error && error.msg) || '接口报错，请稍后再试',
         icon: 'none',
         duration: 2000,
       })
-      return Promise.reject()
+      return Promise.reject(error)
     })
 }
 
